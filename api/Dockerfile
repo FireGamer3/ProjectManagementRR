@@ -20,8 +20,5 @@ apt-get install -y \
 sqlite3 --no-install-recommends && \
 rm -rf /var/lib/apt/lists/*
 
-RUN bundle exec rails db:migrate
-RUN bundle exec rails db:seed
-
 EXPOSE 3001
 CMD ["bundle", "exec", "rails", "server", "-p", "3001", "-b", "0.0.0.0"]
