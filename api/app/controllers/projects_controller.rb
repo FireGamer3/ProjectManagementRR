@@ -3,14 +3,21 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
-
-    render json: @projects
+    @projects = Project.includes(:todo).all
+    @projects_with_todos = @projects.map do |record|
+      record.attributes.merge(
+        'todos' => record.todo
+      )
+    end
+    render json: @projects_with_todos
   end
 
   # GET /projects/1
   def show
-    render json: @project
+    @project_with_todos = @project.attributes.merge(
+        'todos' => @project.todo
+      )
+    render json: @project_with_todos
   end
 
   # POST /projects
@@ -35,13 +42,14 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
+    @project.todo.destroy
     @project.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = Project.includes(:todo).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

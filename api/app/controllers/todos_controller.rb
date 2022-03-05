@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-    before_action :set_todo only: [:show, :update, :destroy]
+    before_action :set_todo, only: [:show, :update, :destroy]
 
     def index
         @todos = Todo.all
@@ -27,7 +27,8 @@ class TodosController < ApplicationController
         if @todo.save
             render json: @todo
         else
-            reder json: @todo.errors, status: :unproccessable_entity
+            render json: @todo.errors, status: :unproccessable_entity
+        end
     end
 
     private
@@ -36,6 +37,6 @@ class TodosController < ApplicationController
         end
 
         def todo_params
-            params.require(:todo).permit(:id, :title, :completed)
+            params.require(:todo).permit(:id, :title, :project_id, :completed)
         end
 end
