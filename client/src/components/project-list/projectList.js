@@ -4,7 +4,7 @@ import ProjectItem from '../project-item/projectItem';
 function ProjectList() {
     const [projects, setProjects] = useState([]);
     const [loaded, setLoaded] = useState(0);
-
+    
     useEffect(() => {
         const fetchData = async () => {
             try {

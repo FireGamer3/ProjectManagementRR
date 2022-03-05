@@ -2,12 +2,19 @@ import React from 'react'
 
 function ProjectItem(props) {
     const project = props.project;
+    
+    let classes = "p-6 text-center rounded-md dark:shadow-gray-400 shadow-sm hover:shadow-md flex flex-col items-center";
+    if(project.completed){
+        classes += " bg-green-600"
+    } else classes += " bg-gray-600";
+
+    let todoCount = project.todos.length;
+    let complete = project.todos.filter(p => p.completed).length;
 
     return (
-        <div className='p-6 bg-gray-600 text-center
-        rounded-md dark:shadow-gray-400 shadow-sm hover:shadow-md
-        flex flex-col items-center'>
+        <div className={classes}>
             <h2 className="uppercase text-2xl">#{project.id} {project.title}</h2>
+            <p>{complete}/{todoCount} tasks complete</p>
         </div>
     )
 }
