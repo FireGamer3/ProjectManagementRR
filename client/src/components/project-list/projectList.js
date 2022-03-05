@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ProjectItem from '../project-item/projectItem';
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
@@ -25,7 +26,7 @@ function ProjectList() {
 
     return (
         <div className='grid gap-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-3'>
-            {projects.map((item) => <p key={item.id}>#{item.id} - {item.title}</p>)}
+            {projects.map((item) => <ProjectItem key={item.id} project={item} />)}
         </div>
     )
 }
