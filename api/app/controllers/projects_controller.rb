@@ -42,7 +42,6 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
-    @project.todo.destroy
     @project.destroy
   end
 
