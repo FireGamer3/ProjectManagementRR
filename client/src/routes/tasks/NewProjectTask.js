@@ -9,11 +9,11 @@ function NewProjectTask() {
 
     const CreateNewTask = async (event) => {
         event.preventDefault();
-        if (title == "") {
+        if (title === "") {
             setError("Title must be filled out!");
         } else {
             try {
-                const rawResponse = await fetch('http://localhost:3001/todos/', {
+                await fetch('http://localhost:3001/todos/', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',

@@ -8,7 +8,7 @@ function NewProject() {
 
     const CreateNewProject = async (event) => {
         event.preventDefault();
-        if(title == ""){
+        if(title === ""){
             setError("Title must be filled out!");
         }else{
             try {
