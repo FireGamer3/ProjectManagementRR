@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ProjectItem(props) {
     const project = props.project;
@@ -13,10 +14,10 @@ function ProjectItem(props) {
     } else classes += " bg-gray-600";
 
     return (
-        <div className={classes}>
+        <Link className={classes} to={'/project/' + project.id}>
             <h2 className="uppercase text-2xl">#{project.id} {project.title}</h2>
             <p>{complete}/{todoCount} tasks complete</p>
-        </div>
+        </Link>
     )
 }
 

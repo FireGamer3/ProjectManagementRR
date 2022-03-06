@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import TaskList from '../../components/task-list/TaskList';
 
 function ProjectDetail() {
     let nav = useNavigate();
@@ -30,7 +31,6 @@ function ProjectDetail() {
     let todoCount = 0;
     let complete = 0;
 
-    console.log(project);
     if(!loading && project != null){
         todoCount = project.todos.length ?? 0;
         complete = project.todos.filter(p => p.completed).length ?? 0;
@@ -42,6 +42,7 @@ function ProjectDetail() {
                 <div>
                     <h1 className='text-4xl text-center py-8 uppercase'>#{project.id} - {project.title}</h1>
                     <p className='text-2xl text-center py-8 uppercase'>{complete}/{todoCount} Tasks Completed</p>
+                    <TaskList tasks={project.todos} />
                 </div>
             }
         </div>
