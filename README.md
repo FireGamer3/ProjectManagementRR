@@ -1,1 +1,1 @@
-# Project Managment App With Rails and React
+# Project Managwment App With Rails and React
