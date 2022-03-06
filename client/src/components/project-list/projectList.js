@@ -23,10 +23,24 @@ function ProjectList() {
         }
     }, [projects, loaded]);
 
+    const deleteProject = async (event, project) => {
+        event.preventDefault();
+        await fetch('http://localhost:3001/projects/' + project.id, {
+            method: 'delete',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+        const index = projects.indexOf(project);
+        let newProjects = [...projects];
+        newProjects.splice(index, 1);
+        setProjects(newProjects);
+    }    
 
     return (
         <div className='grid gap-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-3'>
-            {projects.map((item) => <ProjectItem key={item.id} project={item} />)}
+            {projects.map((item) => <ProjectItem key={item.id} project={item} onDelete={deleteProject} />)}
         </div>
     )
 }
