@@ -26,22 +26,13 @@ function ProjectDetail() {
         if (loading) {
             fetchData();
         }
-    }, [loading, id]);
-
-    let todoCount = 0;
-    let complete = 0;
-
-    if(!loading && project != null){
-        todoCount = project.todos.length ?? 0;
-        complete = project.todos.filter(p => p.completed).length ?? 0;
-    }
+    }, [loading, id, nav]);
 
     return (
         <div>
             {loading ? <h1 className='text-4xl text-center py-8 uppercase'>Loading...</h1> :
                 <div>
                     <h1 className='text-4xl text-center py-8 uppercase'>#{project.id} - {project.title}</h1>
-                    <p className='text-2xl text-center py-8 uppercase'>{complete}/{todoCount} Tasks Completed</p>
                     <div className='m-9'>
                         <Link to={'/newTask/' + project.id} className='bg-blue-600 p-3 rounded-md hover:bg-blue-400'>New Task</Link>
                     </div>

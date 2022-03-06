@@ -15,7 +15,7 @@ class TodosController < ApplicationController
         @todo_with_project = @todo.attributes.merge(
         'project' => @todo.project
       )
-        render json @todo_with_project
+        render json: @todo_with_project
     end
     
     def update

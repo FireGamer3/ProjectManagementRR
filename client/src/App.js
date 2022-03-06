@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./routes/index";
 import ProjectDetail from "./routes/projects/ProjectDetail";
 import NewProject from "./routes/projects/NewProject";
-import NewProjectTask from "./routes/projects/NewProjectTask";
+import NewProjectTask from "./routes/tasks/NewProjectTask";
+import EditProjectTask from "./routes/tasks/EditProjectTask";
 
 import NotFound from "./routes/errors/NotFound";
 
@@ -17,6 +18,7 @@ function App() {
               <Route path="/project/:id" element={<ProjectDetail />} />
               <Route path="/newProject" element={<NewProject />} />
               <Route path="/newTask/:id" element={<NewProjectTask />} />
+              <Route path="/editTask/:id" element={<EditProjectTask />} />
               <Route path="/NotFound" element={<NotFound />} />
               <Route path="/" element={<Index />} />
             </Routes>
