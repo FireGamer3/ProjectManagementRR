@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import TaskList from '../../components/task-list/TaskList';
 
 function ProjectDetail() {
@@ -42,6 +42,9 @@ function ProjectDetail() {
                 <div>
                     <h1 className='text-4xl text-center py-8 uppercase'>#{project.id} - {project.title}</h1>
                     <p className='text-2xl text-center py-8 uppercase'>{complete}/{todoCount} Tasks Completed</p>
+                    <div className='m-9'>
+                        <Link to={'/newTask/' + project.id} className='bg-blue-600 p-3 rounded-md hover:bg-blue-400'>New Task</Link>
+                    </div>
                     <TaskList tasks={project.todos} />
                 </div>
             }

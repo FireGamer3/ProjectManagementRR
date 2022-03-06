@@ -1,0 +1,43 @@
+import React, {useState} from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+
+function NewProjectTask() {
+    let nav = useNavigate();
+    const { id } = useParams();
+    const [title, setTitle] = useState("");
+    const [error, setError] = useState("");
+
+    const CreateNewTask = async (event) => {
+        event.preventDefault();
+        if (title == "") {
+            setError("Title must be filled out!");
+        } else {
+            try {
+                const rawResponse = await fetch('http://localhost:3001/todos/', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ todo: { title, project_id: id } })
+                });
+                nav('/project/' + id);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+
+    return (
+        <div>
+            <h1 className='text-4xl text-center py-8 uppercase'>New Task</h1>
+            <form onSubmit={CreateNewTask}>
+                {error ? <p className='bg-red-600'>{error}</p> : <></>}
+                <input type="text" className="w-full rounded-md text-lg p-4 border-2 border-gray-200 dark:bg-gray-600" placeholder="Task Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <button type='submit' className='bg-blue-600 p-3 rounded-md hover:bg-blue-400 mt-3 w-full'>Create</button>
+            </form>
+        </div>
+    )
+}
+
+export default NewProjectTask

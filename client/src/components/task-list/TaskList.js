@@ -6,9 +6,9 @@ function TaskList(props) {
 
     //<ProjectItem key={item.id} project={item} />
     return (
-        <div className='grid gap-6 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-3'>
+        <div className='grid gap-6 sm:grid-cols-1 mt-3'>
             {tasks.map((item) => <div>
-                <TaskItem task={item} />
+                <TaskItem key={item.id} task={item} />
             </div>)}
         </div>
     )

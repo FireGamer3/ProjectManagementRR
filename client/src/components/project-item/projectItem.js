@@ -9,7 +9,7 @@ function ProjectItem(props) {
     let todoCount = project.todos.length;
     let complete = project.todos.filter(p => p.completed).length;
     
-    if (todoCount === complete){
+    if (todoCount === complete && todoCount != 0){
         classes += " bg-green-600"
     } else classes += " bg-gray-600";
 
