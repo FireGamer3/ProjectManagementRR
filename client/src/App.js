@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Navbar from "./components/nav/Navbar";
+
 import Index from "./routes/index";
 import ProjectDetail from "./routes/projects/ProjectDetail";
 import NewProject from "./routes/projects/NewProject";
@@ -13,19 +15,20 @@ function App() {
   return (
     <div className="dark">
       <div className="bg-white dark:bg-gray-900 dark:text-white">
-        <div className="p-8 max-w-7xl mx-auto min-h-screen">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/project/:id" element={<ProjectDetail />} />
-              <Route path="/newProject" element={<NewProject />} />
-              <Route path="/newTask/:id" element={<NewProjectTask />} />
-              <Route path="/editTask/:id" element={<EditProjectTask />} />
-              <Route path="/editProject/:id" element={<EditProject />} />
-              <Route path="/NotFound" element={<NotFound />} />
-              <Route path="/" element={<Index />} />
-            </Routes>
-          </BrowserRouter>
-        </div>
+        <BrowserRouter>
+          <Navbar />
+          <div className="p-8 max-w-7xl mx-auto min-h-screen">
+              <Routes>
+                <Route path="/project/:id" element={<ProjectDetail />} />
+                <Route path="/newProject" element={<NewProject />} />
+                <Route path="/newTask/:id" element={<NewProjectTask />} />
+                <Route path="/editTask/:id" element={<EditProjectTask />} />
+                <Route path="/editProject/:id" element={<EditProject />} />
+                <Route path="/NotFound" element={<NotFound />} />
+                <Route path="/" element={<Index />} />
+              </Routes>
+          </div>
+        </BrowserRouter>
       </div>
     </div>
   );
